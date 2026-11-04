@@ -1,11 +1,15 @@
 <p align="center">
-  <img src="assets/banner.png" alt="pixel art of someone resting against a big tree in a sunlit forest" width="100%">
+  <img src="assets/banner.png" alt="Pixel art of someone resting against a big tree in a sunlit forest" width="100%">
 </p>
 
-small open source tools. all MIT, and each one gets its own pixel art.
+hey, i'm **bluecheze**. 16, been writing code for a while.
+
+i build small open source tools, and every one of them gets its own pixel art.
+
+<img src="assets/divider.png" alt="" width="100%">
 
 ### tools
 
-nothing shipped yet. the first one is on its way.
+**[larder](https://github.com/bluecheze/larder)**: your own drive, on your own computer. files come down from your host when you open them. macOS, Linux and Windows. being built in the open.
 
-<sub>banner: painted locally with FLUX.2 klein 4B (<code>art/generate.sh</code>), then turned into pixel art by <code>python3 art/banner.py</code>.</sub>
+<img src="assets/divider.png" alt="" width="100%">
