@@ -27,17 +27,20 @@ def paint_glyph(img, glyph, x, y, scale, color):
                 rect(img, px, py, px + scale, py + scale, color)
 
 
-OUTLINE = [(dx, dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1, 2) if (dx, dy) != (0, 0)]
+def outline(width):
+    reach = range(-width, width + 1)
+    return [(dx, dy) for dx in reach for dy in range(-width, width + 2) if (dx, dy) != (0, 0)]
 
 
 def paint_text(img, text, x, y, scale=1, color=CREAM, shadow=INK):
+    offsets = outline(max(1, scale // 2))
     for i, char in enumerate(text):
         left = x + i * 6 * scale
-        for dx, dy in OUTLINE:
+        for dx, dy in offsets:
             paint_glyph(img, GLYPHS[char], left + dx, y + dy, scale, shadow)
         paint_glyph(img, GLYPHS[char], left, y, scale, color)
 
 
-def paint_title(img, x, y, color=CREAM, shadow=INK):
-    paint_text(img, "bluecheze", x, y, 3, color, shadow)
-    paint_text(img, "open source tools", x, y + 28, 2, color, shadow)
+def paint_title(img, x, y, scale=3, color=CREAM, shadow=INK):
+    paint_text(img, "bluecheze", x, y, scale, color, shadow)
+    paint_text(img, "open source tools", x, y + scale * 9, scale // 2, color, shadow)

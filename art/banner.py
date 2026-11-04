@@ -4,22 +4,23 @@ from pathlib import Path
 from PIL import Image
 
 from font import paint_title
-from palette import CREAM, MOSS_INK
+from palette import CREAM, MOSS_INK, ORANGE, ORANGE_DARK, SKIN
 from pixelate import pixelate, upscale
 
 ART = Path(__file__).resolve().parent
 SOURCE = ART / "source.png"
 OUT = ART.parent / "assets" / "banner.png"
 
-GRID_WIDTH = 512
-COLORS = 48
+GRID_WIDTH = 768
+COLORS = 56
 OUT_WIDTH = 1536
-TITLE_AT = (62, 30)
+TITLE_AT = (92, 42)
+TITLE_SCALE = 4
 
 
 def render(grid_width=GRID_WIDTH, colors=COLORS):
-    img = pixelate(Image.open(SOURCE), grid_width, colors)
-    paint_title(img, *TITLE_AT, color=MOSS_INK, shadow=CREAM)
+    img = pixelate(Image.open(SOURCE), grid_width, colors, (ORANGE, ORANGE_DARK, SKIN))
+    paint_title(img, *TITLE_AT, TITLE_SCALE, CREAM, MOSS_INK)
     return upscale(img, OUT_WIDTH)
 
 
