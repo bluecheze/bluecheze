@@ -1,30 +1,30 @@
+import sys
 from pathlib import Path
 
 from PIL import Image
 
-from clouds import paint_clouds
 from font import paint_title
-from layout import HEIGHT, SCALE, WIDTH
-from sky import paint_birds, paint_sea, paint_sky
-from street import paint_figure, paint_street
-from town import paint_house, paint_pole, paint_wires
+from palette import ORANGE, ORANGE_DARK
+from pixelate import pixelate, upscale
 
-OUT = Path(__file__).resolve().parent.parent / "assets" / "banner.png"
+ART = Path(__file__).resolve().parent
+SOURCE = ART / "source.png"
+OUT = ART.parent / "assets" / "banner.png"
 
-LAYERS = [
-    paint_sky, paint_sea, paint_clouds, paint_birds, paint_wires,
-    paint_pole, paint_house, paint_street, paint_figure, paint_title,
-]
+GRID_WIDTH = 512
+COLORS = 48
+OUT_WIDTH = 1536
+TITLE_AT = (118, 12)
 
 
-def render():
-    img = Image.new("RGB", (WIDTH, HEIGHT))
-    for layer in LAYERS:
-        layer(img)
-    return img.resize((WIDTH * SCALE, HEIGHT * SCALE), Image.NEAREST)
+def render(grid_width=GRID_WIDTH, colors=COLORS):
+    img = pixelate(Image.open(SOURCE), grid_width, colors, (ORANGE, ORANGE_DARK))
+    paint_title(img, *TITLE_AT)
+    return upscale(img, OUT_WIDTH)
 
 
 if __name__ == "__main__":
-    OUT.parent.mkdir(exist_ok=True)
-    render().save(OUT)
-    print(OUT)
+    out = Path(sys.argv[1]) if len(sys.argv) > 1 else OUT
+    out.parent.mkdir(exist_ok=True)
+    render().save(out)
+    print(out)

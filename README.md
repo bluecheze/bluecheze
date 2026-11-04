@@ -8,4 +8,4 @@ small open source tools. all MIT, and each one gets its own pixel art.
 
 nothing shipped yet. the first one is on its way.
 
-<sub>the banner is drawn with code in <a href="art">art/</a>. rebuild it with <code>python3 art/banner.py</code>.</sub>
+<sub>banner: painted locally with FLUX.2 klein 4B (<code>art/generate.sh</code>), then turned into pixel art by <code>python3 art/banner.py</code>.</sub>

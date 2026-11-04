@@ -1,4 +1,4 @@
-from palette import CLOUD, INK
+from palette import CREAM, INK
 from pixels import rect
 
 GLYPHS = {
@@ -27,13 +27,13 @@ def paint_glyph(img, glyph, x, y, scale, color):
                 rect(img, px, py, px + scale, py + scale, color)
 
 
-def paint_text(img, text, x, y, scale=1, color=CLOUD):
+def paint_text(img, text, x, y, scale=1, color=CREAM):
     for i, char in enumerate(text):
         left = x + i * 6 * scale
         paint_glyph(img, GLYPHS[char], left + scale, y + scale, scale, INK)
         paint_glyph(img, GLYPHS[char], left, y, scale, color)
 
 
-def paint_title(img):
-    paint_text(img, "bluecheze", 12, 10, scale=2)
-    paint_text(img, "open source tools", 12, 30)
+def paint_title(img, x, y):
+    paint_text(img, "bluecheze", x, y, scale=3)
+    paint_text(img, "open source tools", x, y + 28, scale=2)
