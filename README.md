@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" alt="pixel art of a blue house and a yellow shop under a huge summer cloud" width="100%">
+  <img src="assets/banner.png" alt="pixel art of someone resting against a big tree in a sunlit forest" width="100%">
 </p>
 
 small open source tools. all MIT, and each one gets its own pixel art.

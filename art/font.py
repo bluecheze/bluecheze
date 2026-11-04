@@ -27,13 +27,17 @@ def paint_glyph(img, glyph, x, y, scale, color):
                 rect(img, px, py, px + scale, py + scale, color)
 
 
-def paint_text(img, text, x, y, scale=1, color=CREAM):
+OUTLINE = [(dx, dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1, 2) if (dx, dy) != (0, 0)]
+
+
+def paint_text(img, text, x, y, scale=1, color=CREAM, shadow=INK):
     for i, char in enumerate(text):
         left = x + i * 6 * scale
-        paint_glyph(img, GLYPHS[char], left + scale, y + scale, scale, INK)
+        for dx, dy in OUTLINE:
+            paint_glyph(img, GLYPHS[char], left + dx, y + dy, scale, shadow)
         paint_glyph(img, GLYPHS[char], left, y, scale, color)
 
 
-def paint_title(img, x, y):
-    paint_text(img, "bluecheze", x, y, scale=3)
-    paint_text(img, "open source tools", x, y + 28, scale=2)
+def paint_title(img, x, y, color=CREAM, shadow=INK):
+    paint_text(img, "bluecheze", x, y, 3, color, shadow)
+    paint_text(img, "open source tools", x, y + 28, 2, color, shadow)
