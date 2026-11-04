@@ -33,7 +33,7 @@ def outline(width):
 
 
 def paint_text(img, text, x, y, scale=1, color=CREAM, shadow=INK):
-    offsets = outline(max(1, scale // 2))
+    offsets = outline(scale // 2 + 1)
     for i, char in enumerate(text):
         left = x + i * 6 * scale
         for dx, dy in offsets:
